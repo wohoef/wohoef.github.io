@@ -12,7 +12,7 @@ Numbers: accuracy counts Freeway and Frogger as the same game, as the authors di
 -->
 
 **TL;DR:** I repeated the "which game was this network trained on?" experiment from [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/)
-on 36 new networks across 12 games. GPT-6 Astra goes from 4/4 accuracy on the original networks to 27/36 on mine. I find that some games consistently fool the LLMs, while others seem much easier to identify.
+on 36 new networks across 12 games. GPT-6 Astra goes from 4/4 accuracy on the original networks to 27/36 on mine. I find that some of the new games consistently fool the LLMs, while the original four games seem much easier to identify.
 
 {{< svg-figure src="paper-vs-ours.svg" caption="Accuracy on the 4 original networks, on my 12 networks for those same 4 games, and on my 24 networks for 8 new games." >}}
 
