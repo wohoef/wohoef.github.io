@@ -1,0 +1,51 @@
+baseURL = "https://wohoef.github.io/"
+locale = "en-us"
+title = "Wolter van der Hoef"
+theme = "PaperMod"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+[caches]
+  [caches.images]
+    dir = ":cacheDir/images"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true  # allow raw HTML in posts, e.g. to embed an interactive figure
+  [markup.highlight]
+    style = "github"
+
+[params]
+  env = "production"
+  description = "Notes and experiments on machine learning."
+  author = "Wolter van der Hoef"
+  defaultTheme = "auto"  # follows the reader's light/dark setting
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  ShowBreadCrumbs = false
+  ShowShareButtons = false
+  ShowToc = true
+  TocOpen = false
+  ShowRssButtonInSectionTermList = true
+
+  [params.homeInfoParams]
+    Title = "Wolter van der Hoef"
+    Content = "I write about machine learning experiments. More about me on the [about](/about/) page."
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/wohoef"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 10

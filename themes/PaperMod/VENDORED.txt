@@ -1,0 +1,1 @@
+PaperMod, vendored from https://github.com/adityatelange/hugo-PaperMod at commit 118119693d8b5ac211b939775678310973bcb232 (2026-10-25). MIT license: themes/PaperMod/LICENSE. To update: replace this folder with a newer commit.
