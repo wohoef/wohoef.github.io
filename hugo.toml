@@ -40,6 +40,10 @@ enableRobotsTXT = true
     url = "https://github.com/wohoef"
 
   [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/wolter-van-der-hoef-2415431b5"
+
+  [[params.socialIcons]]
     name = "rss"
     url = "/index.xml"
 

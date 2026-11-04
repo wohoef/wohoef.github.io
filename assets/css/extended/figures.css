@@ -1,0 +1,11 @@
+/* Figures inlined with the svg-figure shortcode: quiet captions under the chart. */
+.svg-figure { margin: 2em 0; }
+.svg-figure svg { display: block; max-width: 100%; height: auto; }
+.post-content .svg-figure figcaption { font-weight: normal; font-size: 0.9em; color: var(--secondary); margin-top: 0.6em; }
+
+/* Collapsible confusion matrices: one quiet row per model, the figure opens below it. */
+.post-content details.cm { border-bottom: 1px solid var(--border); }
+.post-content details.cm:first-of-type { border-top: 1px solid var(--border); }
+.post-content details.cm summary { cursor: pointer; padding: 0.5em 0; font-weight: 500; }
+.post-content details.cm summary .cm-acc { color: var(--secondary); font-weight: normal; font-size: 0.9em; margin-left: 0.4em; }
+.post-content details.cm .svg-figure { margin: 0.5em 0 1.2em; }

@@ -1,0 +1,10 @@
+{{- /* Inline an SVG from the post's folder so it can follow the light/dark theme.
+       Usage: {{< svg-figure src="accuracy.svg" caption="..." >}} */ -}}
+{{- with .Page.Resources.Get (.Get "src") -}}
+<figure class="svg-figure">
+{{ .Content | safeHTML }}
+{{- with $.Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>
+{{- else -}}
+{{- errorf "svg-figure: %q not found next to %s" (.Get "src") $.Page.File.Path -}}
+{{- end -}}
