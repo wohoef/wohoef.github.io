@@ -1,5 +1,5 @@
 ---
-title: "Which game? Reading neural network weights at 9× the scale"
+title: "Sparks of Weight-Space Programming, 36 networks later"
 date: 2026-11-04
 draft: false
 # Unlisted preview: the page is built and reachable by its link, but not listed on the home page, in RSS or
