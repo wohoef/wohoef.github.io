@@ -11,14 +11,12 @@ Images go in this folder next to index.md and are linked as ![alt](figure.png).
 Numbers: accuracy counts Freeway and Frogger as the same game, as the authors did.
 -->
 
-<!-- Intro (sections 1-3 of the outline). TODO: put the HN thread URL in the "Hacker News" link. -->
-
 **TL;DR:** I repeated the "which game was this network trained on?" experiment from [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/)
 on 36 new networks across 12 games. GPT-6 Astra goes from 4/4 accuracy on the original networks to 27/36 on mine. I find that some games consistently fool the LLMs, while others seem much easier to identify.
 
 {{< svg-figure src="paper-vs-ours.svg" caption="Accuracy on the original 4 networks next to my 36." >}}
 
-This week the research blog post [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/) by Rikiya Takehi et al. reached the front page of Hacker News. The question that set off debate was whether LLMs can understand a neural network's behaviour from looking at just its weights.
+This week the research blog post [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/) by Rikiya Takehi et al. reached the front page of [Hacker News](https://news.ycombinator.com/from?site=rikiyat.github.io). The question that set off debate was whether LLMs can understand a neural network's behaviour from looking at just its weights.
 
 Their first experiment tests this question: Pick 4 games that are played on the same 10×10 grid, train a small neural network to play these games, feed the weights as plain numbers into an LLM and ask what game the network was trained on. The LLM had no access to tools or code execution. Astra got all four games from the original blog post correct: Breakout, Pong, Pac-Man, and Freeway.
 
@@ -34,7 +32,7 @@ But both results rely on four classic games. That leaves some questions open:
 So I rebuilt the setup and made it bigger:
 
 - I used 12 games instead of 4. So, this includes the 4 original ones, and 8 new ones. Some of the games look alike on a 10×10 grid (Freeway and Frogger, Snake and Maze, Pac-Man and Sokoban).
-- For each game I trained 3 networks and let the LLMs analyze each of them. 3 × 12 = 36 networks, plus the original 4 totals 40 networks. 
+- For each game I trained 3 networks and let the LLMs analyze each of them. 3 × 12 = 36 networks, plus the original 4 makes 40 networks. 
 - I used the original prompt format, network size, and PPO hyperparameters, applied to my own game implementations.
 - I tested the following models on each of the 40 networks: GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra (through Codex, as the authors ran Astra), DeepSeek V4 Flash, and the same Qwen 3.8 27B that Simon used.
 
@@ -56,7 +54,7 @@ Here is the end of Qwen's answer for one of my Pong networks:
 
 More output tokens did not translate into better results across these models. DeepSeek Flash wrote about 42,000 output tokens per answer, mostly reasoning, while Astra used only 2,300 on average.
 
-**Is it reading the network, or guessing a famous game?** The mistakes show a pattern. Some games are consistently much harder to identify:
+**Does Astra understand how the network functions, or does it make an educated guess between a few famous games?** The mistakes show a pattern. Some games are consistently much harder to identify:
 
 {{< svg-figure src="per-game.svg" caption="Answers correct per game on my networks, 3 networks per game (DeepSeek answered each twice), sorted from easiest to hardest. Freeway and Frogger are accepted interchangeably for accuracy." >}}
 
