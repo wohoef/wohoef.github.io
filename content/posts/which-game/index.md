@@ -33,10 +33,10 @@ But both results rely on four classic games. That leaves some questions open:
 
 So I rebuilt the setup and made it bigger:
 
-- **12 games instead of 4**, including some games that look alike on a 10×10 grid (Freeway and Frogger, Snake and Maze, Pac-Man and Sokoban).
-- **3 networks per game**, each trained from a different random seed: 36 new networks, plus the original experiment's 4.
-- **The original prompt format, network size, and PPO hyperparameters**, applied to my own game implementations.
-- **Five models:** GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra (through Codex, as the authors ran Astra), DeepSeek V4 Flash, and the same Qwen 3.8 27B that Simon used.
+- I used 12 games instead of 4. So, this includes the 4 original ones, and 8 new ones. Some of the games look alike on a 10×10 grid (Freeway and Frogger, Snake and Maze, Pac-Man and Sokoban).
+- For each game I trained 3 networks and let the LLMs analyze each of them. 3 × 12 = 36 networks, plus the original 4 totals 40 networks. 
+- I used the original prompt format, network size, and PPO hyperparameters, applied to my own game implementations.
+- I tested the following models on each of the 40 networks: GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra (through Codex, as the authors ran Astra), DeepSeek V4 Flash, and the same Qwen 3.8 27B that Simon used.
 
 I published everything I used to derive these results [on GitHub](https://github.com/wohoef/name-the-game). This includes training code, the games, all 40 networks, and every model's answer.
 
