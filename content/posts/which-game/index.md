@@ -12,27 +12,27 @@ Numbers: accuracy counts Freeway and Frogger as the same game, as the authors di
 -->
 
 **TL;DR:** I repeated the "which game was this network trained on?" experiment from [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/)
-on 36 new networks across 12 games. GPT-6 Astra goes from 4/4 accuracy on the original networks to 27/36 on mine. I find that some of the new games consistently fool the LLMs, while the original four games seem much easier to identify.
+on 36 new networks across 12 games. GPT-6 Astra goes from 4/4 accuracy on the original networks to 27/36 on mine. I found that some of the new games consistently fool the LLMs, while the original four games seem much easier to identify.
 
 {{< svg-figure src="paper-vs-ours.svg" caption="Accuracy on the 4 original networks, on my 12 networks for those same 4 games, and on my 24 networks for 8 new games." >}}
 
-This week the research blog post [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/) by Rikiya Takehi et al. reached the front page of [Hacker News](https://news.ycombinator.com/from?site=rikiyat.github.io). The question that set off debate was whether LLMs can understand a neural network's behaviour from looking at just its weights.
+This week the research blog post [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/) by Rikiya Takehi et al. drew much attention on [Hacker News](https://news.ycombinator.com/from?site=rikiyat.github.io). The question that set off debate was whether LLMs can understand a neural network's behaviour from looking at just its weights.
 
-Their first experiment tests this question: Pick 4 games that are played on the same 10×10 grid, train a small neural network to play these games, feed the weights as plain numbers into an LLM and ask what game the network was trained on. The LLM had no access to tools or code execution. Astra got all four games from the original blog post correct: Breakout, Pong, Pac-Man, and Freeway.
+To test this, Takehi et al. selected four simple games that are played on the same 10 by 10 grid and trained a small neural network to play each game. Then, they pasted each network’s weights into an LLM as plain numbers in order to ask what game the network was trained on. The LLM had no access to tools or code execution. Astra got all four games from the original blog post correct: Breakout, Pong, Pac-Man, and Freeway.
 
 A day later Simon Willison [tried the same prompts with Qwen 3.8 27B on his laptop](https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/).
 After roughly an hour of reasoning per prompt it named Breakout, Pong and Pac-Man, and only missed Freeway.
 
-But both results rely on four classic games. That leaves some questions open:
+One thing I immediately noticed reading this post was that both results rely on four classic games. This leaves some questions open:
 
-- **Are these results consistent on a bigger sample size?**
+- **Are these results consistent on a larger sample size?**
 - **Is the ability to interpret weights something only SOTA models are capable of?**
-- **Does Astra understand how the network functions, or does it make an educated guess between a few famous games?**
+- **Does Astra understand how the network functions, or does it make an educated guess between a few classic games?**
 
-So I rebuilt the setup and made it bigger:
+So, I rebuilt the setup and made it bigger:
 
 - I used 12 games instead of 4. So, this includes the 4 original ones, and 8 new ones. Some of the games look alike on a 10×10 grid (Freeway and Frogger, Snake and Maze, Pac-Man and Sokoban).
-- For each game I trained 3 networks and let the LLMs analyze each of them. 3 × 12 = 36 networks, plus the original 4 makes 40 networks. 
+- For each game I trained 3 networks and let the LLMs analyze each of them. 3 × 12 = 36 networks, plus the original 4 makes 40 networks in total. 
 - I used the original prompt format, network size, and PPO hyperparameters, applied to my own game implementations.
 - I tested the following models on each of the 40 networks: GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra (through Codex, as the authors ran Astra), DeepSeek V4 Flash, and the same Qwen 3.8 27B that Simon used.
 
@@ -40,9 +40,9 @@ I published everything I used to derive these results [on GitHub](https://github
 
 ## Findings
 
-**Are these results consistent on a bigger sample size?** Mostly yes, for the best model. GPT-6 Astra named 27 of my 36 networks correctly (75%). The other models drop off quickly: GPT-6.1 Sol 24/36, GPT-6.1 Terra 17/36, DeepSeek V4 Flash 32/72 (two answers per network) and Qwen 3.8 27B 4/36. Every model did better on the original four networks than on mine.
+**Are these results consistent on a larger sample size?** Mostly yes, but only for the best model. GPT-6 Astra named 27 of my 36 networks correctly (75%). The other models drop off quickly (see the figure above): GPT-6.1 Sol 24/36, GPT-6.1 Terra 17/36, DeepSeek V4 Flash 32/72 (two answers per network) and Qwen 3.8 27B 4/36. Every model did better on the original four networks than on mine.
 
-**Is the ability to interpret weights something only SOTA models are capable of?** The strongest models performed better. During my experiments Qwen got only 1/4 of the original networks right, while Simon's run with the same model got 3/4 correct. Small samples are noisy: I asked DeepSeek Flash twice about each of my networks, and both answers named the same game for only 13 of the 36. Another difference is that I ran the model through OpenRouter and Simon ran it locally. My results did show a clear skill gap between Qwen and Astra (as expected): For 17 of my 36 networks, Qwen's answer did not map to any of my scoring labels. Many of these answers mentioned some variant of "grid world".
+**Is the ability to interpret weights something only SOTA models are capable of?** The strongest models performed better. During my experiments Qwen only got 1/4 of the original networks right, while Simon's run with the same model got 3/4 correct. Small samples are noisy: I asked DeepSeek Flash twice about each of my networks, and both answers named the same game for only 13 of the 36. Another difference is that I ran the model through OpenRouter and Simon ran it locally. My results did show a clear skill gap between Qwen and Astra (as expected): For 17 of my 36 networks, Qwen's answer did not map to any of my scoring labels. Many of these answers mentioned some variant of "grid world".
 
 Here is the end of Qwen's answer for one of my Pong networks:
 
@@ -54,7 +54,7 @@ Here is the end of Qwen's answer for one of my Pong networks:
 
 More output tokens did not translate into better results across these models. DeepSeek Flash wrote about 42,000 output tokens per answer, mostly reasoning, while Astra used only 2,300 on average.
 
-**Does Astra understand how the network functions, or does it make an educated guess between a few famous games?** The mistakes show a pattern. Some games are consistently much harder to identify:
+**Does Astra understand how the network functions, or does it make an educated guess between a few classic games?** The mistakes show a pattern. Some games are consistently much harder to identify:
 
 {{< svg-figure src="per-game.svg" caption="Answers correct per game on my networks, 3 networks per game (DeepSeek answered each twice), sorted from easiest to hardest. Freeway and Frogger are accepted interchangeably for accuracy." >}}
 
