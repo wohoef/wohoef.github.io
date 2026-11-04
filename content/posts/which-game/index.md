@@ -45,7 +45,7 @@ So I rebuilt the setup and made it bigger:
 - **The original prompt format, network size, and PPO hyperparameters**, applied to my own game implementations.
 - **Five models:** GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra (through Codex, as the authors ran Astra), DeepSeek V4 Flash, and the same Qwen 3.8 27B that Simon used.
 
-I published everything on GitHub that I used to derive these results. This includes training code, the games, all 40 networks, and every model's answer. <!-- link the repo -->
+I published everything I used to derive these results [on GitHub](https://github.com/wohoef/name-the-game). This includes training code, the games, all 40 networks, and every model's answer.
 
 ## Findings
 
@@ -116,5 +116,4 @@ There are limits to what this tests. The environments are my implementations, no
 
 ## Code and data
 
-<!-- github.com/wohoef/name-the-game: code, all 40 networks, every model answer. Link once the repo is public. -->
-LINK HERE
+Everything is at [github.com/wohoef/name-the-game](https://github.com/wohoef/name-the-game): the games, the training code, all 40 networks and every model answer, with the notebook that makes the tables and figures.
