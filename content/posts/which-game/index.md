@@ -14,7 +14,7 @@ Numbers: accuracy counts Freeway and Frogger as the same game, as the authors di
 **TL;DR:** I repeated the "which game was this network trained on?" experiment from [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/)
 on 36 new networks across 12 games. GPT-6 Astra goes from 4/4 accuracy on the original networks to 27/36 on mine. I find that some games consistently fool the LLMs, while others seem much easier to identify.
 
-{{< svg-figure src="paper-vs-ours.svg" caption="Accuracy on the original 4 networks next to my 36." >}}
+{{< svg-figure src="paper-vs-ours.svg" caption="Accuracy on the 4 original networks, on my 12 networks for those same 4 games, and on my 24 networks for 8 new games." >}}
 
 This week the research blog post [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/) by Rikiya Takehi et al. reached the front page of [Hacker News](https://news.ycombinator.com/from?site=rikiyat.github.io). The question that set off debate was whether LLMs can understand a neural network's behaviour from looking at just its weights.
 
