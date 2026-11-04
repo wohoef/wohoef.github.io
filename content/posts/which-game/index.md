@@ -2,13 +2,6 @@
 title: "Sparks of Weight-Space Programming, 36 networks later"
 date: 2026-11-04
 draft: false
-# Unlisted preview: the page is built and reachable by its link, but not listed on the home page, in RSS or
-# the sitemap, and search engines are asked not to index it. To publish for real, delete these five lines.
-build:
-  list: never
-sitemap:
-  disable: true
-robotsNoIndex: true
 summary: "Experiment 1 of Sparks of Weight-Space Programming, repeated on 40 networks and five models."
 ---
 
